@@ -8,11 +8,9 @@ export default class App extends React.Component {
   state ={
     mikegitText:'',
     mikeGit: [],
-    
-  }
-  state ={
     followergit:[]
   }
+ 
 
   componentDidMount(){
     axios.get( 'https://api.github.com/users/mrockingham')
@@ -25,6 +23,7 @@ export default class App extends React.Component {
     axios.get('https://api.github.com/users/mrockingham/followers')
     .then(res2  =>{
       this.setState({followergit: res2.data})
+      console.log('checkthis',res2)
     })
     .catch(err=> console.log(err))
   }
@@ -43,8 +42,19 @@ export default class App extends React.Component {
     </section>
     <section className='GitFollowerCard'>
       <h1>Follower</h1>
-      <img src=''  alt='' />
-  <div className='FollowerUserName'>{this.state.followergit.login}</div>
+      {this.state.followergit.map(follower =>(
+          <img src={follower.avatar_url}  alt='' />
+          
+        
+      ))}
+      
+      {this.state.followergit.map(follower =>(
+          <div className='FollowerUserName'>{follower.login}</div>
+          
+        
+      ))}
+        
+  
     </section>
     </div>
   );
