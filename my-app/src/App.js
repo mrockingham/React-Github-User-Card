@@ -17,6 +17,7 @@ export default class App extends React.Component {
     .then(res => {
       //res.data 
       this.setState({mikeGit: res.data})
+      console.log('mystuff',res.data)
     })
     
 
@@ -43,16 +44,17 @@ export default class App extends React.Component {
     <section className='GitFollowerCard'>
       <h1>Follower</h1>
       {this.state.followergit.map(follower =>(
+        <>
           <img src={follower.avatar_url}  alt='' />
-          
-        
+          <div className='FollowerUserName'>{follower.login}</div>
+        </>
       ))}
       
-      {this.state.followergit.map(follower =>(
-          <div className='FollowerUserName'>{follower.login}</div>
+      {/* {this.state.followergit.map(follower =>(
+          
           
         
-      ))}
+      ))} */}
         
   
     </section>
